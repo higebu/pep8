@@ -53,7 +53,7 @@ class ShellTestCase(unittest.TestCase):
         stdout, stderr, errcode = self.pep8('--help')
         self.assertFalse(errcode)
         self.assertFalse(stderr)
-        self.assertTrue(stdout.startswith("Usage: pep8 [options] input"))
+        self.assertTrue(stdout.startswith("usage: pep8 [options] input"))
 
         stdout, stderr, errcode = self.pep8('--version')
         self.assertFalse(errcode)
@@ -63,8 +63,8 @@ class ShellTestCase(unittest.TestCase):
         stdout, stderr, errcode = self.pep8('--obfuscated')
         self.assertEqual(errcode, 2)
         self.assertEqual(stderr.splitlines(),
-                         ["Usage: pep8 [options] input ...", "",
-                          "pep8: error: no such option: --obfuscated"])
+                         ["usage: pep8 [options] input ...",
+                          "pep8: error: unrecognized arguments: --obfuscated"])
         self.assertFalse(stdout)
 
         self.assertFalse(self._config_filenames)
@@ -115,7 +115,7 @@ class ShellTestCase(unittest.TestCase):
         stdout, stderr, errcode = self.pep8()
         self.assertEqual(errcode, 2)
         self.assertEqual(stderr.splitlines(),
-                         ["Usage: pep8 [options] input ...", "",
+                         ["usage: pep8 [options] input ...",
                           "pep8: error: input not specified"])
         self.assertFalse(self._config_filenames)
 
@@ -178,7 +178,7 @@ class ShellTestCase(unittest.TestCase):
         stdout, stderr, errcode = self.pep8()
         self.assertEqual(errcode, 2)
         self.assertFalse(stdout)
-        self.assertTrue(stderr.startswith('Usage: pep8 [options] input ...'))
+        self.assertTrue(stderr.startswith('usage: pep8 [options] input ...'))
 
         # no matching file in the diff
         diff_lines[3] = "+++ b/testsuite/lost/E11.py"
